@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CRAPCHA: Completely Ridiculous And Phony Captchas that Hassle for Amusement</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/font-awesome.css">
+		<link rel="stylesheet" href="css/crapcha.css">
+		<link rel="stylesheet" href="css/site.css">
+	</head>
+	<body>
+		
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=280560425329333";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+		<section style="padding: 0 15px;">
+			<h1 style="margin: 4px 0;"><a href="./">CRAPCHA</a></h1>
+			<h2 style="margin: 4px 0;">Completely Ridiculous And Phony Captchas that Hassle for Amusement</h2>
+			<p><a href="#">Learn more...</a></p>
+		</section>
+
+		<section style="padding: 0 15px;" class="social">
+			<p><iframe src="http://ghbtns.com/github-btn.html?user=thomaspark&repo=crapcha&type=watch"
+			  allowtransparency="true" frameborder="0" scrolling="0" width="90" height="20"></iframe>
+			  <a href="https://twitter.com/thomashpark" class="twitter-follow-button" data-show-count="false">Follow @thomashpark</a>
+			  <a href="https://twitter.com/share" class="twitter-share-button" data-via="thomashpark">Tweet</a>
+			  <span class="fb-like" data-href="http://crapcha.com" data-send="false" data-layout="button_count" data-width="70" data-show-faces="false"></span></p>
+		</section>
+
+		<div class="banner">
+			<section>
+				<div class="column">
+					<h2>Demo</h2>
+					<iframe src="crapcha.html" frameborder="0" scrolling="0" width="300" height="150"></iframe>
+				</div><div class="column">
+					<h2>Code</h2>
+					<div>
+						<textarea>&lt;iframe src="http://crapcha.com/crapcha.html" frameborder="0" scrolling="0" width="300" height="150"&gt;&lt;/iframe&gt;</textarea>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<section>
+
+			<h2>Recent CRAPCHAs</h2>
+			<div id="recent"></div>
+
+		</section>
+
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://www.parsecdn.com/js/parse-1.1.14.min.js"></script>
+		<script type="text/javascript">
+
+			retrieve();
+
+			function retrieve(arg) {
+
+				var html = '';
+
+				Parse.initialize("2moOiQhfPeRV59WOjc08sOXoIak22aXviq8WCAuD","U2xgNLNQYzWy6iabH3YPwdKp4GOhEcWDPlTBFzvC");
+
+				var query = new Parse.Query("Record");
+				query.descending("createdAt");
+				query.limit(arg ? arg : 12);
+				query.find({
+					success: function(data) {
+						for (var i = 0; i < data.length; i++) {
+							var time = new Date(data[i].createdAt);
+
+							html += '<div class="crapcha"><div class="code">' + data[i].attributes.captcha + '</div><div class="recent">' + escapeHTML(data[i].attributes.attempt) + '</div><a href="id.html#' + data[i].id + '" class="time">' + data[i].createdAt + '</a></div>';
+						}
+
+						$('#recent').html(html);
+					}
+				});
+			};
+
+			function escapeHTML( string ) {
+				return jQuery( '<pre>' ).text( string ).html();
+			}
+
+		</script>
+
+	</body>
+</html>

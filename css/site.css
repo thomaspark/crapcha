@@ -1,0 +1,121 @@
+body {
+	padding-top: 60px;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	color: #333;
+}
+
+h1 {
+	font-size: 36px;
+}
+
+h1 a {
+	color: #333;
+	text-decoration: none;
+}
+
+a {
+	color: #888;
+}
+
+a:hover {
+	color: #333;
+}
+
+section {
+	clear: both;
+	width: 960px;
+	margin: 60px auto;
+	overflow: auto;
+}
+
+.column {
+	width: 50%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.banner {
+	margin: 40px 0;
+	padding: 10px 0 10px;
+	background-color: #FFFDDA;
+	background-color: #FEF2A3;
+	background-color: #FED46C;
+}
+
+.fb_iframe_widget > span {
+	vertical-align: baseline !important;
+}
+.fb_iframe_widget > span > span {
+	height: 19px; !important;
+}
+
+.crapcha {
+	position: relative;
+	width: 300px;
+	float: left;
+	margin: 20px 10px 60px;
+	text-decoration: none;
+}
+
+textarea {
+	width: 100%;
+	height: 145px;
+	max-width: 300px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	resize: none;
+	font-size: 18px;
+	word-wrap: break-word;
+	word-break: normal;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+.recent {
+	padding: 8px 0 0;
+	background-color: #820400;
+	text-align: center;
+	color: #fff;
+}
+
+.time {
+	position: absolute;
+	margin-right: 3px;
+	top: 0;
+	right: 0;
+	font-size: 10px;
+	color: #888;
+	text-decoration: none;
+}
+
+@media screen and (max-width: 960px) {
+
+	body {
+		padding-top: 10px;
+	}
+
+	section {
+		width: auto;
+	}
+
+	.column {
+		float: none;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.crapcha {
+		float: none;
+		margin: 0 auto 40px;
+	}
+
+	.social {
+		display: none;
+	}
+
+}
