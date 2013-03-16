@@ -6,8 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/font-awesome.css">
-		<link rel="stylesheet" href="css/crapcha.css">
+		<link rel="stylesheet" href="embed/css/font-awesome.css">
+		<link rel="stylesheet" href="embed/css/crapcha.css">
 		<link rel="stylesheet" href="css/site.css">
 	</head>
 	<body>
@@ -41,11 +41,11 @@
 			<section>
 				<div class="column">
 					<h2>Demo</h2>
-					<iframe src="crapcha.html" frameborder="0" scrolling="0" width="300" height="150"></iframe>
+					<iframe src="http://crapcha.com/embed/" frameborder="0" scrolling="0" width="300" height="150"></iframe>
 				</div><div class="column">
 					<h2>Code</h2>
 					<div>
-						<textarea>&lt;iframe src="http://crapcha.com/crapcha.html" frameborder="0" scrolling="0" width="300" height="150"&gt;&lt;/iframe&gt;</textarea>
+						<textarea>&lt;iframe src="http://crapcha.com/embed/" frameborder="0" scrolling="0" width="300" height="150"&gt;&lt;/iframe&gt;</textarea>
 					</div>
 				</div>
 			</section>
@@ -79,7 +79,7 @@
 						for (var i = 0; i < data.length; i++) {
 							var time = new Date(data[i].createdAt);
 
-							html += '<div class="crapcha"><div class="code">' + data[i].attributes.captcha + '</div><div class="recent">' + escapeHTML(data[i].attributes.attempt) + '</div><a href="id.html#' + data[i].id + '" class="time">' + data[i].createdAt + '</a></div>';
+							html += '<div class="crapcha"><div class="code">' + data[i].attributes.captcha + '</div><div class="recent">' + escapeHTML(data[i].attributes.attempt) + '</div><a href="./show/#' + data[i].id + '" class="time">' + data[i].createdAt + '</a></div>';
 						}
 
 						$('#recent').html(html);

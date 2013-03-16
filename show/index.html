@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>CRAPCHA: Completely Ridiculous And Phony Captchas that Hassle for Amusement</title>
+		<title>CRAPCHA</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/font-awesome.css">
-		<link rel="stylesheet" href="css/crapcha.css">
-		<link rel="stylesheet" href="css/site.css">
+		<link rel="stylesheet" href="../embed/css/font-awesome.css">
+		<link rel="stylesheet" href="../embed/css/crapcha.css">
+		<link rel="stylesheet" href="../css/site.css">
 		<style type="text/css">
 
 			.crapcha {
@@ -32,7 +32,7 @@
 
 
 		<section style="padding: 0 15px;">
-			<h1 style="margin: 4px 0;"><a href="./">CRAPCHA</a></h1>
+			<h1 style="margin: 4px 0;"><a href="../">CRAPCHA</a></h1>
 			<h2 style="margin: 4px 0;">Completely Ridiculous And Phony Captchas that Hassle for Amusement</h2>
 			<p><a href="#">Learn more...</a></p>
 		</section>
@@ -72,7 +72,7 @@
 
 				query.get(id, {
 					success: function(data) {
-						html = '<div class="crapcha"><div class="code">' + data.attributes.captcha + '</div><div class="recent">' + escapeHTML(data.attributes.attempt) + '</div><a href="id.html#' + id + '" class="time">' + data.createdAt + '</a></div>';
+						html = '<div class="crapcha"><div class="code">' + data.attributes.captcha + '</div><div class="recent">' + escapeHTML(data.attributes.attempt) + '</div><a href="./#' + id + '" class="time">' + data.createdAt + '</a></div>';
 						$('#recent').html(html);
 					}
 				});
