@@ -41,11 +41,19 @@ section {
 	background-color: #FFE982;
 }
 
+.fb_iframe_widget {
+	margin-right: 32px !important;
+}
+
 .fb_iframe_widget > span {
 	vertical-align: baseline !important;
 }
 .fb_iframe_widget > span > span {
-	height: 19px; !important;
+	height: 19px !important;
+}
+
+#___plusone_0 {
+	display: inline-block !important;
 }
 
 .crapcha {
