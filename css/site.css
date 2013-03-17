@@ -41,6 +41,10 @@ section {
 	background-color: #FFE982;
 }
 
+.social {
+	overflow-y: visible;
+}
+
 .fb-like,
 .fb_iframe_widget {
 	width: 75px !important;
@@ -51,10 +55,6 @@ section {
 }
 .fb_iframe_widget > span > span {
 	height: 19px !important;
-}
-
-#___plusone_0 {
-	display: inline-block !important;
 }
 
 .crapcha {
@@ -71,6 +71,7 @@ textarea {
 	max-width: 300px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 10px;
 	resize: none;
