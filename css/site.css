@@ -41,8 +41,9 @@ section {
 	background-color: #FFE982;
 }
 
+.fb-like,
 .fb_iframe_widget {
-	margin-right: 32px !important;
+	width: 75px !important;
 }
 
 .fb_iframe_widget > span {
