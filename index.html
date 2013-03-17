@@ -11,18 +11,6 @@
 		<link rel="stylesheet" href="css/site.css">
 	</head>
 	<body>
-		
-		<div id="fb-root"></div>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-		<script>(function(d, s, id) {
-		  var js, fjs = d.getElementsByTagName(s)[0];
-		  if (d.getElementById(id)) return;
-		  js = d.createElement(s); js.id = id;
-		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=280560425329333";
-		  fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
-		<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-
 
 		<section style="padding: 0 15px;">
 			<h1 style="margin: 4px 0;"><a href="./">CRAPCHA</a></h1>
@@ -56,12 +44,9 @@
 		</div>
 
 		<section>
-
 			<h2>Recent CRAPCHAs</h2>
 			<div id="recent"></div>
-
 		</section>
-
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="http://www.parsecdn.com/js/parse-1.1.14.min.js"></script>
@@ -69,15 +54,16 @@
 
 			retrieve();
 
-			function retrieve(arg) {
+			function retrieve() {
 
-				var html = '';
+				var html = '',
+					count = 12;
 
 				Parse.initialize("2moOiQhfPeRV59WOjc08sOXoIak22aXviq8WCAuD","U2xgNLNQYzWy6iabH3YPwdKp4GOhEcWDPlTBFzvC");
 
 				var query = new Parse.Query("Record");
 				query.descending("createdAt");
-				query.limit(arg ? arg : 12);
+				query.limit(count);
 				query.find({
 					success: function(data) {
 						for (var i = 0; i < data.length; i++) {
@@ -95,18 +81,37 @@
 				return jQuery( '<pre>' ).text( string ).html();
 			}
 
-		</script>
-		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-23019901-5']);
+			_gaq.push(['_trackPageview']);
 
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-23019901-5']);
-		  _gaq.push(['_trackPageview']);
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId      : '350332181737294',
+					xfbml      : true
+				});
+			};
 
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
+			(function(doc, script) {
+			    var js, 
+			        fjs = doc.getElementsByTagName(script)[0],
+			        add = function(url, id) {
+			            if (doc.getElementById(id)) {return;}
+			            js = doc.createElement(script);
+			            js.src = url;
+			            id && (js.id = id);
+			            fjs.parentNode.insertBefore(js, fjs);
+			        };
+			 
+			    // Google Analytics
+			    add(('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js', 'ga');
+			    // Google+ button
+			    add('https://apis.google.com/js/plusone.js');
+			    // Facebook SDK
+			    add('//connect.facebook.net/en_US/all.js', 'facebook-jssdk');
+			    // Twitter SDK
+			    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+			}(document, 'script'));
 
 		</script>
 
