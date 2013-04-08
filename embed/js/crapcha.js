@@ -6,7 +6,7 @@ var crapcha = {
 
 		$el.append(html)
 			.children('.control')
-				.children('input').on('blur', this.send).end()
+				.children('input').keypress(this.send).end()
 				.find('.reload').css('user-select', 'none').click(function(){
 					crapcha.populate($el);
 				});
@@ -79,22 +79,29 @@ var crapcha = {
 		});
 	},
 
-	send: function() {
+	send: function(e) {
 
-		if (($(this).val()) && ($(this).val() !== crapcha.attempt)) {
+		if (e.which == 13) {
 
-			crapcha.attempt = $(this).val().substring(0, 20);
-			var $captcha = $(this).parent().parent().children('.code');
+			if (($(this).val()) && ($(this).val() !== crapcha.attempt)) {
 
-			if (($captcha.children('span').size() === $captcha.find('*').size()) && ($captcha.find('[onload], [onunload], [onclick], [onmouseover], [onmouseout], [onmousedown], [onmouseup]').size() === 0)) {
+				crapcha.attempt = $(this).val().substring(0, 20);
+				var $captcha = $(this).parent().parent().children('.code');
 
-				Parse.initialize("2moOiQhfPeRV59WOjc08sOXoIak22aXviq8WCAuD","U2xgNLNQYzWy6iabH3YPwdKp4GOhEcWDPlTBFzvC");
+				if (($captcha.children('span').size() === $captcha.find('*').size()) && ($captcha.find('[onload], [onunload], [onclick], [onmouseover], [onmouseout], [onmousedown], [onmouseup]').size() === 0)) {
 
-				var Record = Parse.Object.extend("Record");
-				var record = new Record();
-				record.set('captcha', $captcha.html());
-				record.set('attempt', crapcha.attempt);
-				record.save();
+					Parse.initialize("2moOiQhfPeRV59WOjc08sOXoIak22aXviq8WCAuD","U2xgNLNQYzWy6iabH3YPwdKp4GOhEcWDPlTBFzvC");
+
+					var Record = Parse.Object.extend("Record");
+					var record = new Record();
+					record.set('captcha', $captcha.html());
+					record.set('attempt', crapcha.attempt);
+					record.save();
+				}
+
+				$(this).val('');
+
+				crapcha.populate($(this).parent().parent());
 			}
 		}
 	},
