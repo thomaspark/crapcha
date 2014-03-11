@@ -1,117 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>CRAPCHA: Completely Ridiculous And Phony Captcha that Hassles for Amusement</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="embed/css/font-awesome.css">
-		<link rel="stylesheet" href="embed/css/crapcha.css">
-		<link rel="stylesheet" href="css/site.css">
-	</head>
-	<body>
+  <head>
+    <title>CRAPCHA: Completely Ridiculous And Phony Captcha that Hassles for Amusement</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="embed/css/font-awesome.css">
+    <link rel="stylesheet" href="embed/css/crapcha.css">
+    <link rel="stylesheet" href="css/site.css">
+  </head>
+  <body>
+    <section style="padding: 0 15px;">
+      <h1 style="margin: 4px 0;"><a href="./">CRAPCHA</a></h1>
+      <h2 style="margin: 4px 0;">Completely Ridiculous And Phony Captcha that Hassles for Amusement</h2>
+      <p><a href="http://thomaspark.me/2013/04/crapcha-completely-ridiculous-and-phony-captcha-that-hassles-for-amusement">Learn more...</a> | <a href="http://carboncostume.com/">See something different...</a></p>
+    </section>
+    <section style="padding: 0 15px;" class="social">
+      <p>
+        <a href="https://twitter.com/thomashpark" class="twitter-follow-button" data-show-count="false">Follow @thomashpark</a>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="thomashpark">Tweet</a>
+        <span class="g-plusone" data-size="medium"></span>
+        <span class="fb-like" data-href="http://crapcha.com" data-send="false" data-layout="button_count" data-width="70" data-show-faces="false"></span>
+      </p>
+    </section>
+    <div class="banner">
+      <section>
+        <div class="column">
+          <h2>Demo</h2>
+          <iframe src="./embed/" frameborder="0" scrolling="0" width="300" height="150"></iframe>
+        </div><div class="column">
+          <h2>Code</h2>
+          <div>
+            <textarea>&lt;iframe src="http://crapcha.com/embed/" frameborder="0" scrolling="0" width="300" height="150"&gt;&lt;/iframe&gt;</textarea>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section>
+      <h2>Recent CRAPCHAs</h2>
+      <div id="recent"></div>
+    </section>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.1.14.min.js"></script>
+    <script type="text/javascript">
 
-		<section style="padding: 0 15px;">
-			<h1 style="margin: 4px 0;"><a href="./">CRAPCHA</a></h1>
-			<h2 style="margin: 4px 0;">Completely Ridiculous And Phony Captcha that Hassles for Amusement</h2>
-			<p><a href="http://thomaspark.me/2013/04/crapcha-completely-ridiculous-and-phony-captcha-that-hassles-for-amusement">Learn more...</a> | <a href="http://carboncostume.com/">See something different...</a></p>
-		</section>
+      retrieve();
 
-		<section style="padding: 0 15px;" class="social">
-			<p>
-				<a href="https://twitter.com/thomashpark" class="twitter-follow-button" data-show-count="false">Follow @thomashpark</a>
-				<a href="https://twitter.com/share" class="twitter-share-button" data-via="thomashpark">Tweet</a>
-				<span class="g-plusone" data-size="medium"></span>
-			 	<span class="fb-like" data-href="http://crapcha.com" data-send="false" data-layout="button_count" data-width="70" data-show-faces="false"></span>
-			</p>
-		</section>
+      function retrieve() {
 
-		<div class="banner">
-			<section>
-				<div class="column">
-					<h2>Demo</h2>
-					<iframe src="./embed/" frameborder="0" scrolling="0" width="300" height="150"></iframe>
-				</div><div class="column">
-					<h2>Code</h2>
-					<div>
-						<textarea>&lt;iframe src="http://crapcha.com/embed/" frameborder="0" scrolling="0" width="300" height="150"&gt;&lt;/iframe&gt;</textarea>
-					</div>
-				</div>
-			</section>
-		</div>
+        var html = '',
+          count = 12;
 
-		<section>
-			<h2>Recent CRAPCHAs</h2>
-			<div id="recent"></div>
-		</section>
+        Parse.initialize("2moOiQhfPeRV59WOjc08sOXoIak22aXviq8WCAuD","U2xgNLNQYzWy6iabH3YPwdKp4GOhEcWDPlTBFzvC");
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script src="http://www.parsecdn.com/js/parse-1.1.14.min.js"></script>
-		<script type="text/javascript">
+        var query = new Parse.Query("Record");
+        query.descending("createdAt");
+        query.limit(count);
+        query.find({
+          success: function(data) {
+            for (var i = 0; i < data.length; i++) {
+              var time = new Date(data[i].createdAt);
 
-			retrieve();
+              html += '<div class="crapcha"><div class="code">' + data[i].attributes.captcha + '</div><div class="recent">' + escapeHTML(data[i].attributes.attempt) + '</div><a href="./show/#' + data[i].id + '" class="time">' + data[i].createdAt + '</a></div>';
+            }
 
-			function retrieve() {
+            $('#recent').html(html);
+          }
+        });
+      };
 
-				var html = '',
-					count = 12;
+      function escapeHTML( string ) {
+        return jQuery( '<pre>' ).text( string ).html();
+      }
 
-				Parse.initialize("2moOiQhfPeRV59WOjc08sOXoIak22aXviq8WCAuD","U2xgNLNQYzWy6iabH3YPwdKp4GOhEcWDPlTBFzvC");
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-23019901-5']);
+      _gaq.push(['_trackPageview']);
 
-				var query = new Parse.Query("Record");
-				query.descending("createdAt");
-				query.limit(count);
-				query.find({
-					success: function(data) {
-						for (var i = 0; i < data.length; i++) {
-							var time = new Date(data[i].createdAt);
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '350332181737294',
+          xfbml      : true
+        });
+      };
 
-							html += '<div class="crapcha"><div class="code">' + data[i].attributes.captcha + '</div><div class="recent">' + escapeHTML(data[i].attributes.attempt) + '</div><a href="./show/#' + data[i].id + '" class="time">' + data[i].createdAt + '</a></div>';
-						}
+      (function(doc, script) {
+          var js, 
+              fjs = doc.getElementsByTagName(script)[0],
+              add = function(url, id) {
+                  if (doc.getElementById(id)) {return;}
+                  js = doc.createElement(script);
+                  js.src = url;
+                  id && (js.id = id);
+                  fjs.parentNode.insertBefore(js, fjs);
+              };
+       
+          // Google Analytics
+          add(('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js', 'ga');
+          // Google+ button
+          add('https://apis.google.com/js/plusone.js');
+          // Facebook SDK
+          add('//connect.facebook.net/en_US/all.js', 'facebook-jssdk');
+          // Twitter SDK
+          add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+      }(document, 'script'));
 
-						$('#recent').html(html);
-					}
-				});
-			};
-
-			function escapeHTML( string ) {
-				return jQuery( '<pre>' ).text( string ).html();
-			}
-
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-23019901-5']);
-			_gaq.push(['_trackPageview']);
-
-			window.fbAsyncInit = function() {
-				FB.init({
-					appId      : '350332181737294',
-					xfbml      : true
-				});
-			};
-
-			(function(doc, script) {
-			    var js, 
-			        fjs = doc.getElementsByTagName(script)[0],
-			        add = function(url, id) {
-			            if (doc.getElementById(id)) {return;}
-			            js = doc.createElement(script);
-			            js.src = url;
-			            id && (js.id = id);
-			            fjs.parentNode.insertBefore(js, fjs);
-			        };
-			 
-			    // Google Analytics
-			    add(('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js', 'ga');
-			    // Google+ button
-			    add('https://apis.google.com/js/plusone.js');
-			    // Facebook SDK
-			    add('//connect.facebook.net/en_US/all.js', 'facebook-jssdk');
-			    // Twitter SDK
-			    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
-			}(document, 'script'));
-
-		</script>
-
-	</body>
+    </script>
+  </body>
 </html>
