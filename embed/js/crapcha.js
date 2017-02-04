@@ -6,7 +6,7 @@ var crapcha = {
 
 		$el.append(html)
 			.children('.control')
-				.children('input').keypress(this.send).end()
+				// .children('input').keypress(this.send).end()
 				.find('.reload').css('user-select', 'none').click(function(){
 					crapcha.populate($el);
 				});
