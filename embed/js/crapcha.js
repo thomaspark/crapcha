@@ -90,13 +90,29 @@ var crapcha = {
 
 				if (($captcha.children('span').size() === $captcha.find('*').size()) && ($captcha.find('[onload], [onunload], [onclick], [onmouseover], [onmouseout], [onmousedown], [onmouseup]').size() === 0)) {
 
-					Parse.initialize("2moOiQhfPeRV59WOjc08sOXoIak22aXviq8WCAuD","U2xgNLNQYzWy6iabH3YPwdKp4GOhEcWDPlTBFzvC");
+				  var config = {
+				    apiKey: "AIzaSyAvlVi3PMdwBXjAvUrGEtPj2wnQGvzkHEY",
+				    authDomain: "crapcha-7bee7.firebaseapp.com",
+				    databaseURL: "https://crapcha-7bee7.firebaseio.com",
+				    projectId: "crapcha-7bee7",
+				    storageBucket: "crapcha-7bee7.appspot.com",
+				    messagingSenderId: "354184007766"
+				  };
+				  firebase.initializeApp(config);
 
-					var Record = Parse.Object.extend("Record");
-					var record = new Record();
-					record.set('captcha', $captcha.html());
-					record.set('attempt', crapcha.attempt);
-					record.save();
+  				var database = firebase.database();
+  				database.child("attempts").push().set({
+  					captcha: $captcha.html(),
+  					attempt: crapcha.attempt
+  				});
+
+					// Parse.initialize("2moOiQhfPeRV59WOjc08sOXoIak22aXviq8WCAuD","U2xgNLNQYzWy6iabH3YPwdKp4GOhEcWDPlTBFzvC");
+
+					// var Record = Parse.Object.extend("Record");
+					// var record = new Record();
+					// record.set('captcha', $captcha.html());
+					// record.set('attempt', crapcha.attempt);
+					// record.save();
 				}
 
 				$(this).val('');
