@@ -91,7 +91,7 @@ var crapcha = {
 
   send: function(e) {
 
-    if (e.which == 13) {
+    if (e.which === 13) {
 
       if (($(this).val()) && ($(this).val() !== crapcha.attempt)) {
 
