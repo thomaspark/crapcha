@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>CRAPCHA</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		
-		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="../embed/css/font-awesome.css">
-		<link rel="stylesheet" href="../embed/css/crapcha.css">
-		<link rel="stylesheet" href="../css/site.css">
-		<style type="text/css">
+  <head>
+    <title>CRAPCHA</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../embed/css/font-awesome.css">
+    <link rel="stylesheet" href="../embed/css/crapcha.css">
+    <link rel="stylesheet" href="../css/site.css">
+    <style type="text/css">
 
-			.crapcha {
-				float: none;
-				margin: 0 auto;
-			}
+      .crapcha {
+        float: none;
+        margin: 0 auto;
+      }
 
-		</style>
-	</head>
-	<body>
+    </style>
+  </head>
+  <body>
 
-		<section style="padding: 0 15px;">
-			<h1 style="margin: 4px 0;"><a href="../">CRAPCHA</a></h1>
-			<h2 style="margin: 4px 0;">Completely Ridiculous And Phony Captcha that Hassles for Amusement</h2>
-			<p><a href="https://thomaspark.me/2013/04/crapcha-completely-ridiculous-and-phony-captcha-that-hassles-for-amusement">Learn more...</a></p>
-		</section>
+    <section style="padding: 0 15px;">
+      <h1 style="margin: 4px 0;"><a href="../">CRAPCHA</a></h1>
+      <h2 style="margin: 4px 0;">Completely Ridiculous And Phony Captcha that Hassles for Amusement</h2>
+      <p><a href="https://thomaspark.me/2013/04/crapcha-completely-ridiculous-and-phony-captcha-that-hassles-for-amusement">Learn more...</a></p>
+    </section>
 
-		<section style="padding: 0 15px;" class="social">
-			<p>
-				<a href="https://twitter.com/thomashpark" class="twitter-follow-button" data-show-count="false">Follow @thomashpark</a>
-				<a href="https://twitter.com/share" class="twitter-share-button" data-via="thomashpark">Tweet</a>
-			 	<span class="fb-like" data-href="http://crapcha.com" data-send="false" data-layout="button_count" data-width="70" data-show-faces="false"></span>
-			</p>
-		</section>
+    <section style="padding: 0 15px;" class="social">
+      <p>
+        <a href="https://twitter.com/thomashpark" class="twitter-follow-button" data-show-count="false">Follow @thomashpark</a>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="thomashpark">Tweet</a>
+        <span class="fb-like" data-href="http://crapcha.com" data-send="false" data-layout="button_count" data-width="70" data-show-faces="false"></span>
+      </p>
+    </section>
 
-		<div class="banner">
-			<section>
-				<div id="recent">
-				</div>
-			</section>
-		</div>
+    <div class="banner">
+      <section>
+        <div id="recent">
+        </div>
+      </section>
+    </div>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-		<script type="text/javascript">
+    <script type="text/javascript">
 
-			retrieve();
+      retrieve();
 
       function retrieve() {
 
@@ -72,40 +72,40 @@
         });
       };
 
-			function escapeHTML( string ) {
-				return jQuery( '<pre>' ).text( string ).html();
-			}
+      function escapeHTML( string ) {
+        return jQuery( '<pre>' ).text( string ).html();
+      }
 
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-23019901-5']);
-			_gaq.push(['_trackPageview']);
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-23019901-5']);
+      _gaq.push(['_trackPageview']);
 
-			window.fbAsyncInit = function() {
-				FB.init({
-					appId      : '350332181737294',
-					xfbml      : true
-				});
-			};
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '350332181737294',
+          xfbml      : true
+        });
+      };
 
-			(function(doc, script) {
-			    var js, 
-			        fjs = doc.getElementsByTagName(script)[0],
-			        add = function(url, id) {
-			            if (doc.getElementById(id)) {return;}
-			            js = doc.createElement(script);
-			            js.src = url;
-			            id && (js.id = id);
-			            fjs.parentNode.insertBefore(js, fjs);
-			        };
-			 
-			    // Google Analytics
-			    add(('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js', 'ga');
-			    // Facebook SDK
-			    add('//connect.facebook.net/en_US/all.js', 'facebook-jssdk');
-			    // Twitter SDK
-			    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
-			}(document, 'script'));
+      (function(doc, script) {
+          var js, 
+              fjs = doc.getElementsByTagName(script)[0],
+              add = function(url, id) {
+                  if (doc.getElementById(id)) {return;}
+                  js = doc.createElement(script);
+                  js.src = url;
+                  id && (js.id = id);
+                  fjs.parentNode.insertBefore(js, fjs);
+              };
+       
+          // Google Analytics
+          add(('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js', 'ga');
+          // Facebook SDK
+          add('//connect.facebook.net/en_US/all.js', 'facebook-jssdk');
+          // Twitter SDK
+          add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+      }(document, 'script'));
 
-		</script>
-	</body>
+    </script>
+  </body>
 </html>
