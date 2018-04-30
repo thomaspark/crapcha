@@ -60,6 +60,7 @@ section {
 .crapcha {
 	position: relative;
 	width: 300px;
+	max-height: 136px;
 	float: left;
 	margin: 20px 10px 60px;
 	text-decoration: none;
@@ -85,6 +86,7 @@ textarea {
 }
 
 .recent {
+	min-height: 30px;
 	padding: 8px 0 0;
 	background-color: #820400;
 	text-align: center;
