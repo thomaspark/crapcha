@@ -65,8 +65,9 @@
           var data = snapshot.val();
 
           var time = new Date(data.timestamp);
+          var captcha = data.captcha.replace(/<script ?/g, '&lt;script');
 
-          html = '<div class="crapcha"><div class="code">' + data.captcha + '</div><div class="recent">' + escapeHTML(data.attempt) + '</div><a href="./#' + id + '" class="time">' + time + '</a></div>';
+          html = '<div class="crapcha"><div class="code">' + captcha + '</div><div class="recent">' + escapeHTML(data.attempt) + '</div><a href="./#' + id + '" class="time">' + time + '</a></div>';
           
           $('#recent').html(html);
         });

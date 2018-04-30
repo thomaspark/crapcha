@@ -106,6 +106,7 @@ var crapcha = {
             captcha: $captcha.html(),
             attempt: crapcha.attempt,
             timestamp: firebase.database.ServerValue.TIMESTAMP
+          }, function(error) {
           });
         }
 
