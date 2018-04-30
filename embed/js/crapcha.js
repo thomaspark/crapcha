@@ -6,12 +6,22 @@ var crapcha = {
 
 		$el.append(html)
 			.children('.control')
-				// .children('input').keypress(this.send).end()
+				.children('input').keypress(this.send).end()
 				.find('.reload').css('user-select', 'none').click(function(){
 					crapcha.populate($el);
 				});
 
 		this.populate($el);
+
+	  var config = {
+	    apiKey: "AIzaSyAvlVi3PMdwBXjAvUrGEtPj2wnQGvzkHEY",
+	    authDomain: "crapcha-7bee7.firebaseapp.com",
+	    databaseURL: "https://crapcha-7bee7.firebaseio.com",
+	    projectId: "crapcha-7bee7",
+	    storageBucket: "crapcha-7bee7.appspot.com",
+	    messagingSenderId: "354184007766"
+	  };
+	  firebase.initializeApp(config);
 	},
 
 	populate: function($el) {
@@ -90,29 +100,13 @@ var crapcha = {
 
 				if (($captcha.children('span').size() === $captcha.find('*').size()) && ($captcha.find('[onload], [onunload], [onclick], [onmouseover], [onmouseout], [onmousedown], [onmouseup]').size() === 0)) {
 
-				  var config = {
-				    apiKey: "AIzaSyAvlVi3PMdwBXjAvUrGEtPj2wnQGvzkHEY",
-				    authDomain: "crapcha-7bee7.firebaseapp.com",
-				    databaseURL: "https://crapcha-7bee7.firebaseio.com",
-				    projectId: "crapcha-7bee7",
-				    storageBucket: "crapcha-7bee7.appspot.com",
-				    messagingSenderId: "354184007766"
-				  };
-				  firebase.initializeApp(config);
-
   				var database = firebase.database();
-  				database.child("attempts").push().set({
+
+  				database.ref("attempts").push().set({
   					captcha: $captcha.html(),
-  					attempt: crapcha.attempt
+  					attempt: crapcha.attempt,
+  					timestamp: firebase.database.ServerValue.TIMESTAMP
   				});
-
-					// Parse.initialize("2moOiQhfPeRV59WOjc08sOXoIak22aXviq8WCAuD","U2xgNLNQYzWy6iabH3YPwdKp4GOhEcWDPlTBFzvC");
-
-					// var Record = Parse.Object.extend("Record");
-					// var record = new Record();
-					// record.set('captcha', $captcha.html());
-					// record.set('attempt', crapcha.attempt);
-					// record.save();
 				}
 
 				$(this).val('');

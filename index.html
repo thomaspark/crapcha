@@ -37,37 +37,41 @@
         </div>
       </section>
     </div>
-<!--     <section>
+    <section>
       <h2>Recent CRAPCHAs</h2>
       <div id="recent"></div>
-    </section> -->
+    </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <!-- <script src="https://www.parsecdn.com/js/parse-1.1.14.min.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script type="text/javascript">
 
-      // retrieve();
+      retrieve();
 
       function retrieve() {
 
-        var html = '',
-          count = 12;
+        var count = 24;
 
-        Parse.initialize("2moOiQhfPeRV59WOjc08sOXoIak22aXviq8WCAuD","U2xgNLNQYzWy6iabH3YPwdKp4GOhEcWDPlTBFzvC");
+        var config = {
+          apiKey: "AIzaSyAvlVi3PMdwBXjAvUrGEtPj2wnQGvzkHEY",
+          authDomain: "crapcha-7bee7.firebaseapp.com",
+          databaseURL: "https://crapcha-7bee7.firebaseio.com",
+          projectId: "crapcha-7bee7",
+          storageBucket: "crapcha-7bee7.appspot.com",
+          messagingSenderId: "354184007766"
+        };
+        firebase.initializeApp(config);
 
-        var query = new Parse.Query("Record");
-        query.descending("createdAt");
-        query.limit(count);
-        query.find({
-          success: function(data) {
-            for (var i = 0; i < data.length; i++) {
-              var time = new Date(data[i].createdAt);
+        firebase.database().ref('attempts').orderByChild('ups').limitToLast(count).on('value', function(snapshot) {
+          var data = snapshot.val();
+          var html = '';
 
-              html += '<div class="crapcha"><div class="code">' + data[i].attributes.captcha + '</div><div class="recent">' + escapeHTML(data[i].attributes.attempt) + '</div><a href="./show/#' + data[i].id + '" class="time">' + data[i].createdAt + '</a></div>';
-            }
+          for (var i in snapshot.val()) {
+            var time = new Date(data[i].timestamp);
 
-            $('#recent').html(html);
+            html = '<div class="crapcha"><div class="code">' + data[i].captcha + '</div><div class="recent">' + escapeHTML(data[i].attempt) + '</div><a href="./show/#' + i + '" class="time">' + time + '</a></div>' + html;
           }
+
+          $('#recent').html(html);
         });
       };
 
