@@ -98,7 +98,7 @@ var crapcha = {
         crapcha.attempt = $(this).val().substring(0, 20);
         var $captcha = $(this).parent().parent().children('.code');
 
-        if (($captcha.children('span').size() === $captcha.find('*').size()) && ($captcha.find('[onload], [onunload], [onclick], [onmouseover], [onmouseout], [onmousedown], [onmouseup]').size() === 0)) {
+        if (($captcha.children('span').size() === $captcha.find('*').size()) && ($captcha.find('[onload], [onunload], [onclick], [onmouseover], [onmouseout], [onmousedown], [onmouseup], [onkeypress], [onerror], [background], meta, img, svg, script, link, style, iframe, input').size() === 0)) {
 
           var database = firebase.database();
 
