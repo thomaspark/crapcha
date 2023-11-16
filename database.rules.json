@@ -1,0 +1,20 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "attempts": {
+      ".indexOn": ["ups", "timestamp"],
+      "$attempt_key": {
+        "attempt": {
+      		".validate": "!newData.val().matches(/<script|onload|onunload|onclick|onmouseover|onmouseout|onmousedown|onmouseup|onerror|onkeypres|<img|<link|javascript:|alert/i)"   
+        },
+        "captcha": {
+      		".validate": "!newData.val().matches(/<script|onload|onunload|onclick|onmouseover|onmouseout|onmousedown|onmouseup|onerror|onkeypres|<img|<link|javascript:|alert/i)"   
+        },
+        "timestamp": {
+      		".validate": "newData.isNumber()"      
+        }
+      }
+    }
+  }
+}
